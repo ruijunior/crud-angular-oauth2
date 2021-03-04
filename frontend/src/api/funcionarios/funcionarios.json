@@ -1,0 +1,26 @@
+[
+  {
+    "id": 1,
+    "nome": "Rui Junior",
+    "email": "rui@gmail.com",
+    "cpf": "68876687490",
+    "salario": 10000,
+    "cargo": "Analista"
+  },
+  {
+    "id": 2,
+    "nome": "Lilian Silva",
+    "email": "lilian@gmail.com",
+    "cpf": "71120456490",
+    "salario": 12600,
+    "cargo": "Gerente"
+  },
+  {
+    "id": 3,
+    "nome": "Diane Sena e Silva",
+    "email": "diane@gmail.com",
+    "cpf": "98778998700",
+    "salario": 12600,
+    "cargo": "Gerente"
+  }
+]

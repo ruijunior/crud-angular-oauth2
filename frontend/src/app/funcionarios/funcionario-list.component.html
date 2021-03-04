@@ -1,0 +1,46 @@
+<div class="card">
+  <div class="card-header">Funcionários</div>
+
+  <div class="card-body">
+    <div class="row">
+      <div class="col-md-2">Pesquisar por:</div>
+      <div class="col-md-4">
+        <input type="text" [(ngModel)]="listFilter" />
+      </div>
+    </div>
+    <div class="row" *ngIf="listFilter">
+      <div class="col-md-6">
+        <h4>Pesquisado por: {{ listFilter }}</h4>
+      </div>
+    </div>
+    <div class="table-responsive">
+      <table class="table" *ngIf="funcionarios && funcionarios.length">
+        <thead>
+          <tr>
+            <th>Nome</th>
+            <th>Email</th>
+            <th>CPF</th>
+            <th>Cargo</th>
+            <th>Salário</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let funcionario of filteredFuncionarios">
+            <td>
+              <a [routerLink]="['/funcionarios', funcionario.funcionarioId]">
+                {{ funcionario.nome }}
+              </a>
+            </td>
+            <td>{{ funcionario.email }}</td>
+            <td>{{ funcionario.cpf | cpf}}</td>
+            <td>{{ funcionario.cargo }}</td>
+            <td>{{ funcionario.salario |  currency : 'BRL' }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+<div *ngIf="errorMessage" class="alert alert-danger">
+  Erro: {{ errorMessage }}
+</div>
