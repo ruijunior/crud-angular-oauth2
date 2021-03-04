@@ -13,6 +13,7 @@ spring:
     host: smtp.sendgrid.net
     port: 587
     username: apikey
+    password: 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
    
 #  security:
 #    oauth2:
@@ -24,4 +25,5 @@ spring:
 
 crud-api:
   email:
-    remetente: Crud-API-Evollo
+    remetente: Crud-API-Evollo - <junior_rui@yahoo.com.br>
+    

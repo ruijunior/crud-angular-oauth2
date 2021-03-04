@@ -22,6 +22,10 @@ public class UsuarioService {
 			Empresa empresa = this.empresaService.buscar(empresaId);
 			usuario.setEmpresa(empresa);			
 		}
+		
+		if (usuario.getCadastroUsuarioPeloFuncionario()) {
+			usuario.criar();
+		}
 		return usuarioRepository.save(usuario);
 	}
 	

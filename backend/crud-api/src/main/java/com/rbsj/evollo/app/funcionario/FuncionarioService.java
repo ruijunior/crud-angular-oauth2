@@ -5,6 +5,8 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.rbsj.evollo.app.cargo.Cargo;
+import com.rbsj.evollo.app.cargo.CargoService;
 import com.rbsj.evollo.app.comum.exceptions.EntidadeNaoEncontradaException;
 import com.rbsj.evollo.app.empresa.Empresa;
 import com.rbsj.evollo.app.empresa.EmpresaService;
@@ -18,6 +20,9 @@ public class FuncionarioService {
 	@Autowired
 	private EmpresaService empresaService;
 	
+	@Autowired
+	private CargoService cargoService;
+	
 	public List<Funcionario> listar(Long empresaId) {
 		return this.funcionarioRepository.findByEmpresaId(empresaId);
 	}
@@ -30,8 +35,13 @@ public class FuncionarioService {
 	
 	public Funcionario salvar(Funcionario funcionario) {
 		Long empresaId = funcionario.getEmpresa().getId();
+		Long cargoId = funcionario.getCargo().getId();
+		
 		Empresa empresa = this.empresaService.buscar(empresaId);
+		Cargo cargo = this.cargoService.buscar(cargoId);
+		
 		funcionario.setEmpresa(empresa);
+		funcionario.setCargo(cargo);
 		
 		if(funcionario.getId() == null) {
 			funcionario.criar();			

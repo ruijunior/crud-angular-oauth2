@@ -22,7 +22,7 @@ public class CriacaoUsuarioFuncionarioCriadoListener {
 		usuario.setEmpresa(funcionario.getEmpresa());
 		usuario.setNome(funcionario.getNome());
 		usuario.setSenha(usuarioService.generatePassword());
-		usuario.criar();
+		usuario.setCadastroUsuarioPeloFuncionario(Boolean.TRUE);
 		usuarioService.salvar(usuario);
 	}
 }

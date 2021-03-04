@@ -27,4 +27,8 @@ public class CargoService {
 	public List<Cargo> listar(Empresa empresa) {
 		return this.cargoRepository.findByEmpresa(empresa);
 	}
+
+	public Cargo buscar(Long cargoId) {
+		return this.cargoRepository.findById(cargoId).get();
+	}
 }

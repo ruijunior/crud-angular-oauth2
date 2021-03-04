@@ -14,6 +14,7 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 import org.springframework.data.domain.AbstractAggregateRoot;
 
@@ -53,6 +54,9 @@ public class Usuario extends AbstractAggregateRoot<Usuario>{
 	)
 	private Set<Papel> papeis = new HashSet<>();
 	
+	@Transient
+	private Boolean cadastroUsuarioPeloFuncionario = Boolean.FALSE;
+	
 	public boolean senhaCoincide(String senha) {
 		return getSenha().equals(senha);
 	}
@@ -62,7 +66,7 @@ public class Usuario extends AbstractAggregateRoot<Usuario>{
 	}
 	
 	public void criar() {
-		registerEvent(UsuarioCriadoEvent.class);
+		registerEvent(new UsuarioCriadoEvent(this));
 	}
 
 }

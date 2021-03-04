@@ -2,11 +2,8 @@ package com.rbsj.evollo.app.usuario.listener;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.event.EventListener;
-import org.springframework.security.oauth2.common.util.RandomValueStringGenerator;
 import org.springframework.stereotype.Component;
 
-import com.rbsj.evollo.app.funcionario.Funcionario;
-import com.rbsj.evollo.app.funcionario.events.FuncionarioCriadoEvent;
 import com.rbsj.evollo.app.infra.service.EnvioEmailService;
 import com.rbsj.evollo.app.infra.service.EnvioEmailService.Mensagem;
 import com.rbsj.evollo.app.usuario.Usuario;

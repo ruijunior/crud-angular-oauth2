@@ -7,8 +7,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-import org.hibernate.validator.constraints.br.CNPJ;
-
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -30,7 +28,6 @@ public class Empresa {
 	@Column(nullable = false)
 	private String nomeFantasia;
 	
-	@CNPJ
 	@Column(length = 14, nullable = false)
 	private String cnpj;
 }
