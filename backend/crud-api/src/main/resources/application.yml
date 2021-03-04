@@ -13,7 +13,7 @@ spring:
     host: smtp.sendgrid.net
     port: 587
     username: apikey
-    password: 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
+    # password: 
    
 #  security:
 #    oauth2:
