@@ -2,7 +2,6 @@ package com.rbsj.evollo.app.funcionario;
 
 import java.util.List;
 
-import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -19,8 +18,8 @@ public class FuncionarioService {
 	@Autowired
 	private EmpresaService empresaService;
 	
-	public List<Funcionario> listar(Empresa empresa) {
-		return this.funcionarioRepository.findByEmpresa(empresa);
+	public List<Funcionario> listar(Long empresaId) {
+		return this.funcionarioRepository.findByEmpresaId(empresaId);
 	}
 	
 	public Funcionario buscar(Long id) {
@@ -33,12 +32,11 @@ public class FuncionarioService {
 		Long empresaId = funcionario.getEmpresa().getId();
 		Empresa empresa = this.empresaService.buscar(empresaId);
 		funcionario.setEmpresa(empresa);
+		
+		if(funcionario.getId() == null) {
+			funcionario.criar();			
+		}
+		
 		return this.funcionarioRepository.save(funcionario);
-	}
-
-	public Funcionario atualizar(Long id, Funcionario funcionario) {
-		Funcionario funcionarioAtual = this.buscar(id);
-		BeanUtils.copyProperties(funcionario, funcionarioAtual, "id");
-		return this.salvar(funcionarioAtual);
 	}
 }

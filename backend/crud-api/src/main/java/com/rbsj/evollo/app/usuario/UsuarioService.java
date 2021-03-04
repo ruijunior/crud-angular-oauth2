@@ -1,6 +1,7 @@
 package com.rbsj.evollo.app.usuario;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.oauth2.common.util.RandomValueStringGenerator;
 import org.springframework.stereotype.Service;
 
 import com.rbsj.evollo.app.empresa.Empresa;
@@ -25,7 +26,11 @@ public class UsuarioService {
 	}
 	
 	public Usuario buscarPorEmail(String email) {
-		return this.usuarioRepository.findByEmail(email);
+		return this.usuarioRepository.findByEmail(email).get();
+	}
+	
+	public String generatePassword() {
+		return new RandomValueStringGenerator(8).generate(); 
 	}
 
 }

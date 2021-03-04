@@ -9,10 +9,19 @@ spring:
     console:
       enabled: true
       path: /h2-console
-  security:
-    oauth2:
-      resourceserver:
-        opaquetoken:
-          introspection-uri: http://localhost:8081/oauth/check_token
-          client-id: checktoken
-          client-secret: check123
+  mail:
+    host: smtp.sendgrid.net
+    port: 587
+    username: apikey
+   
+#  security:
+#    oauth2:
+#      resourceserver:
+#        opaquetoken:
+#          introspection-uri: http://localhost:8081/oauth/check_token
+#          client-id: checktoken
+#          client-secret: check123
+
+crud-api:
+  email:
+    remetente: Crud-API-Evollo

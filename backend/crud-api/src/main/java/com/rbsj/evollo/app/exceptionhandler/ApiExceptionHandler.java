@@ -4,6 +4,9 @@ import java.time.LocalDateTime;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.MessageSource;
+import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -19,6 +22,9 @@ import com.rbsj.evollo.app.comum.exceptions.NegocioException;
 
 @ControllerAdvice
 public class ApiExceptionHandler extends ResponseEntityExceptionHandler {
+	
+	@Autowired
+	private MessageSource messageSource;
 	
 	@ExceptionHandler(EntidadeNaoEncontradaException.class)
 	public ResponseEntity<?> handleNegocioException(EntidadeNaoEncontradaException ex, WebRequest request){
@@ -39,10 +45,14 @@ public class ApiExceptionHandler extends ResponseEntityExceptionHandler {
 		
 		BindingResult bindingResult = ex.getBindingResult();
 		List<ApiError.Field> fields = bindingResult.getFieldErrors().stream()
-				.map(fe -> ApiError.Field.builder()
+				.map(fe -> { 
+					String message =messageSource.getMessage(fe, LocaleContextHolder.getLocale());
+					
+					return ApiError.Field.builder()
 						.nome(fe.getField())
-						.menssagemUsuario(fe.getDefaultMessage())
-						.build())
+						.menssagemUsuario(message)
+						.build();
+				})
 				.collect(Collectors.toList());
 		
 		ApiError apiError = ApiError.builder()
